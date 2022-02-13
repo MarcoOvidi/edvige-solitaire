@@ -92,12 +92,7 @@ function GameManager() {
     function controlloVittoria() {
         let tuttiVuoti = true;
         deck.mazzetti.forEach(mazz => { if(mazz.length > 0) tuttiVuoti = false});
-        if(tuttiVuoti == true) {
-            esito(true);
-        }
-    }
 
-    function esito(vinto) {
         const containerResult = document.createElement('div');
         setCenterFlexLayout(containerResult);
         containerResult.style.height = '100%';
@@ -105,7 +100,7 @@ function GameManager() {
 
         const result = document.createElement('img');
         result.setAttribute('id', 'img-result');
-        result.src =  vinto ? winImg : loseImg;
+        result.src =  tuttiVuoti ? winImg : loseImg;
         result.style.height = '170px';
         containerResult.appendChild(result);
 
