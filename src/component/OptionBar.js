@@ -9,6 +9,7 @@ function OptionBar() {
     
     function init() {
         const bar = document.createElement('div');
+        bar.setAttribute('id','bar');
 
         if (bar) {
 

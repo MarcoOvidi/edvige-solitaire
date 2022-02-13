@@ -16,6 +16,8 @@ function Content() {
 
             // -- Style
             el.setAttribute('id', 'content-js');
+            el.style.marginLeft = '50';
+            el.style.marginRight = '-50';
             initAbsolute(el, ['bottom', 'right', 'left']);
             setStyle(el, styles.STYLE_CONTENT);
 

@@ -12,7 +12,6 @@ function GameManager() {
 
     let deck;
     let mazzettiSulTavolo;
-    let numeroDiEstrazioneDalPozzetto;
     let cartaInMano;
 
     function normalizeCard(card) {
@@ -23,7 +22,8 @@ function GameManager() {
     }
 
     this.start = function () {
-        console.log('QUI');
+        document.getElementById('start-button').remove();
+
         // creo il deck di carte
         deck = new Deck();
 
@@ -31,8 +31,6 @@ function GameManager() {
         deck.shuffle();
 
         getContentElements();
-
-        numeroDiEstrazioneDalPozzetto = 1;
 
         console.log(mazzettiSulTavolo);
 
@@ -87,7 +85,15 @@ function GameManager() {
 
             cartaInMano = appenaScoperta;
         } else {
-            esito(CARD_VALUE_TO_NUMBER[cartaInMano.value] != 10);
+            controlloVittoria();
+        }
+    }
+
+    function controlloVittoria() {
+        let tuttiVuoti = true;
+        deck.mazzetti.forEach(mazz => { if(mazz.length > 0) tuttiVuoti = false});
+        if(tuttiVuoti == true) {
+            esito(true);
         }
     }
 
@@ -113,8 +119,7 @@ function GameManager() {
     }
 
     function reset() {
-        document.getElementById('main').firstChild.remove();
-        new Game();
+        location.reload();
     }
 
     function getContentElements() {
@@ -125,12 +130,5 @@ function GameManager() {
     }
 
 }
-
-const styles = {
-    STYLE_OVERLAP_CARD: {
-        height: '250px',
-        marginLeft: '-110px'
-    }
-};
 
 export default GameManager;
